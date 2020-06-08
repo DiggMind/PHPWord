@@ -51,7 +51,7 @@ class Chart extends AbstractPart
         'percent_stacked_column' => array('type' => 'bar', 'colors' => 0, 'axes' => true, 'bar' => 'col', 'grouping' => 'percentStacked'),
         'line'                   => array('type' => 'line', 'colors' => 0, 'axes' => true),
         'area'                   => array('type' => 'area', 'colors' => 0, 'axes' => true),
-        'radar'                  => array('type' => 'radar', 'colors' => 0, 'axes' => true, 'radar' => 'standard', 'no3d' => true),
+        'radar'                  => array('type' => 'radar', 'colors' => 0, 'axes' => true, 'radar' => 'marker', 'no3d' => true),//雷达类型改成marker
         'scatter'                => array('type' => 'scatter', 'colors' => 0, 'axes' => true, 'scatter' => 'marker', 'no3d' => true),
     );
 
@@ -243,10 +243,19 @@ class Chart extends AbstractPart
                 $xmlWriter->endElement(); // c:strRef
                 $xmlWriter->endElement(); // c:tx
             }
-
+            if ('radar' === $this->element->getType()){//去除雷达图数据端点
+                $xmlWriter->startElement('c:marker');
+                $xmlWriter->writeElementBlock("c:symbol",'val','none');
+                $xmlWriter->endElement();
+            }
             // The c:dLbls was added to make word charts look more like the reports in SurveyGizmo
             // This section needs to be made configurable before a pull request is made
             $xmlWriter->startElement('c:dLbls');
+
+            if ('pie' === $this->element->getType()){//饼状图支持数字小数点
+                $xmlWriter->writeElementBlock("c:numFmt",['formatCode'=>'0.00%','sourceLinked'=>'0']);
+            }
+
 
             foreach ($style->getDataLabelOptions() as $option => $val) {
                 $xmlWriter->writeElementBlock("c:{$option}", 'val', (int) $val);
@@ -387,8 +396,14 @@ class Chart extends AbstractPart
             $xmlWriter->writeElement('c:majorGridlines');
         }
 
+        if ('radar' === $this->element->getType()){
+            $xmlWriter->writeElementBlock('c:majorUnit', 'val', $this->element->getMajorUnit());
+        }
+
         $xmlWriter->startElement('c:scaling');
         $xmlWriter->writeElementBlock('c:orientation', 'val', 'minMax');
+        $xmlWriter->writeElementBlock('c:max', 'val', $this->element->getMax());
+        $xmlWriter->writeElementBlock('c:min', 'val', $this->element->getMin());
         $xmlWriter->endElement(); // c:scaling
 
         $this->writeShape($xmlWriter, true);

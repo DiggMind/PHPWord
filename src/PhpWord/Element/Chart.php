@@ -54,6 +54,12 @@ class Chart extends AbstractElement
      */
     private $style;
 
+    private $max = 100;
+
+    private $min = 0;
+
+    private $majorUnit = 10;
+
     /**
      * Create new instance
      *
@@ -126,4 +132,59 @@ class Chart extends AbstractElement
     {
         return $this->style;
     }
+
+    /**
+     * 获取最大值
+     * @return int
+     */
+    public function getMax()
+    {
+        return $this->max;
+    }
+
+    /**
+     * 设置最大值
+     * @param int $value
+     */
+    public function setMax(int $value)
+    {
+        $this->max = $value;
+    }
+
+    /**
+     * 获取最大值
+     * @return int
+     */
+    public function getMin()
+    {
+        return $this->min;
+    }
+
+    /**
+     * 设置最大值
+     * @param int $value
+     */
+    public function setMin(int $value)
+    {
+        $this->min = $value;
+    }
+
+    /**
+     * 获取雷达图的步进
+     * @return int
+     */
+    public function getMajorUnit()
+    {
+        return $this->majorUnit;
+    }
+
+    /**
+     * 设置雷达图的步进
+     * @param int $value
+     */
+    public function setMajorUnit(int $value)
+    {
+        $this->majorUnit = $value;
+    }
+
 }
