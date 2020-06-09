@@ -60,6 +60,7 @@ class Chart extends AbstractElement
 
     private $majorUnit = 10;
 
+    private $overlap = '100';
     /**
      * Create new instance
      *
@@ -187,4 +188,22 @@ class Chart extends AbstractElement
         $this->majorUnit = $value;
     }
 
+    /**
+     * 设置系列重叠
+     * @param string $value
+     */
+
+    public function setOverLap(string $value)
+    {
+        $this->overlap = $value;
+    }
+
+    /**
+     * 设置系列重叠
+     * @return string
+     */
+    public function getOverLap()
+    {
+        return $this->overlap;
+    }
 }

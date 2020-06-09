@@ -186,8 +186,9 @@ class Chart extends AbstractPart
 
         // Series
         $this->writeSeries($xmlWriter, isset($this->options['scatter']));
+        //系列重叠
 
-        $xmlWriter->writeElementBlock('c:overlap', 'val', '100');
+        $xmlWriter->writeElementBlock('c:overlap', 'val', $this->element->getOverLap());
 
         // Axes
         if (isset($this->options['axes'])) {
