@@ -165,6 +165,16 @@ class TOC extends AbstractElement
         $styleWriter->write();
         $xmlWriter->endElement();
 
+        //间隔
+        $xmlWriter->startElement('w:spacing');
+        $xmlWriter->writeAttribute('w:before', '0');
+        $xmlWriter->writeAttribute('w:beforeLines', '100');
+        $xmlWriter->writeAttribute('w:after', '0');
+        $xmlWriter->writeAttribute('w:afterLines', '100');
+        $xmlWriter->writeAttribute('w:line', '360');
+        $xmlWriter->writeAttribute('w:lineRule', 'auto');
+        $xmlWriter->endElement();
+
         // Indent
         if ($indent > 0) {
             $xmlWriter->startElement('w:ind');
