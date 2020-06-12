@@ -71,10 +71,10 @@ class Theme extends AbstractPart
         $str .= '<a:srgbClr val="EEECE1" />';
         $str .= '</a:lt2>';
         $str .= '<a:accent1>';
-        $str .= '<a:srgbClr val="4F81BD" />';
+        $str .= '<a:srgbClr val="FFB74D" />';
         $str .= '</a:accent1>';
         $str .= '<a:accent2>';
-        $str .= '<a:srgbClr val="C0504D" />';
+        $str .= '<a:srgbClr val="29B6F6" />';
         $str .= '</a:accent2>';
         $str .= '<a:accent3>';
         $str .= '<a:srgbClr val="9BBB59" />';
