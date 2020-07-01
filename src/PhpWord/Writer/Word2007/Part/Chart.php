@@ -154,7 +154,27 @@ class Chart extends AbstractPart
 
         //Chart legend
         if ($showLegend) {
-            $xmlWriter->writeRaw('<c:legend><c:legendPos val="r"/></c:legend>');
+            $xmlWriter->writeRaw('<c:legend><c:legendPos val="b"/><c:txPr>
+<a:bodyPr rot="0" spcFirstLastPara="0" vertOverflow="ellipsis" vert="horz" wrap="square" anchor="ctr" anchorCtr="1"/>
+<a:lstStyle/>
+<a:p>
+<a:pPr>
+<a:defRPr lang="zh-CN" sz="1200" b="0" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0">
+<a:solidFill>
+<a:srgbClr val="7799BF"/>
+</a:solidFill>
+<a:uFill>
+<a:solidFill>
+<a:schemeClr val="tx1"/>
+</a:solidFill>
+</a:uFill>
+<a:latin typeface="+mn-lt"/>
+<a:ea typeface="黑体" charset="0"/>
+<a:cs typeface="+mn-cs"/>
+</a:defRPr>
+</a:pPr>
+</a:p>
+</c:txPr></c:legend>'); //修改为b，即bottom，放在下方
         }
 
         $xmlWriter->startElement('c:plotArea');
@@ -257,7 +277,27 @@ class Chart extends AbstractPart
                 $xmlWriter->writeElementBlock("c:numFmt",['formatCode'=>'0.00%','sourceLinked'=>'0']);
             }
 
-
+            $xmlWriter->writeRaw('<c:txPr>
+<a:bodyPr rot="0" spcFirstLastPara="0" vertOverflow="ellipsis" vert="horz" wrap="square" lIns="38100" tIns="19050" rIns="38100" bIns="19050" anchor="ctr" anchorCtr="1"/>
+<a:lstStyle/>
+<a:p>
+<a:pPr>
+<a:defRPr lang="zh-CN" sz="1400" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0">
+<a:solidFill>
+<a:srgbClr val="324C69"/>
+</a:solidFill>
+<a:uFill>
+<a:solidFill>
+<a:schemeClr val="tx1"/>
+</a:solidFill>
+</a:uFill>
+<a:latin typeface="+mn-lt"/>
+<a:ea typeface="黑体" panose="02000000000000000000" charset="-122"/>
+<a:cs typeface="+mn-cs"/>
+</a:defRPr>
+</a:pPr>
+</a:p>
+</c:txPr>');
             foreach ($style->getDataLabelOptions() as $option => $val) {
                 $xmlWriter->writeElementBlock("c:{$option}", 'val', (int) $val);
             }
