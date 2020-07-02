@@ -443,8 +443,9 @@ class Chart extends AbstractPart
 
         $xmlWriter->startElement('c:scaling');
         $xmlWriter->writeElementBlock('c:orientation', 'val', 'minMax');
-        $xmlWriter->writeElementBlock('c:max', 'val', $this->element->getMax());
-        $xmlWriter->writeElementBlock('c:min', 'val', $this->element->getMin());
+        //设置后在word下会出现异常，在wps下则正常。比较奇怪。
+//        $xmlWriter->writeElementBlock('c:max', 'val', $this->element->getMax());
+//        $xmlWriter->writeElementBlock('c:min', 'val', $this->element->getMin());
         $xmlWriter->endElement(); // c:scaling
 
         $this->writeShape($xmlWriter, true);
