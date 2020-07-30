@@ -161,7 +161,7 @@ class Chart extends AbstractPart
 <a:pPr>
 <a:defRPr lang="zh-CN" sz="1200" b="0" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0">
 <a:solidFill>
-<a:srgbClr val="7799BF"/>
+<a:srgbClr val="000000"/>
 </a:solidFill>
 <a:uFill>
 <a:solidFill>
@@ -169,7 +169,7 @@ class Chart extends AbstractPart
 </a:solidFill>
 </a:uFill>
 <a:latin typeface="+mn-lt"/>
-<a:ea typeface="黑体" charset="0"/>
+<a:ea typeface="思源黑体 CN Normal" charset="0"/>
 <a:cs typeface="+mn-cs"/>
 </a:defRPr>
 </a:pPr>
@@ -282,9 +282,9 @@ class Chart extends AbstractPart
 <a:lstStyle/>
 <a:p>
 <a:pPr>
-<a:defRPr lang="zh-CN" sz="1400" b="1" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0">
+<a:defRPr lang="zh-CN" sz="1400" b="0" i="0" u="none" strike="noStrike" kern="1200" cap="none" spc="0" normalizeH="0" baseline="0">
 <a:solidFill>
-<a:srgbClr val="324C69"/>
+<a:srgbClr val="000000"/>
 </a:solidFill>
 <a:uFill>
 <a:solidFill>
@@ -292,12 +292,14 @@ class Chart extends AbstractPart
 </a:solidFill>
 </a:uFill>
 <a:latin typeface="+mn-lt"/>
-<a:ea typeface="黑体" panose="02000000000000000000" charset="-122"/>
+<a:ea typeface="思源黑体 CN Normal" panose="02000000000000000000" charset="-122"/>
 <a:cs typeface="+mn-cs"/>
 </a:defRPr>
 </a:pPr>
 </a:p>
-</c:txPr>');
+</c:txPr>');//图表数字
+            $xmlWriter->writeRaw(' <c:dLblPos val="outEnd"/>');//数据在图外
+
             foreach ($style->getDataLabelOptions() as $option => $val) {
                 $xmlWriter->writeElementBlock("c:{$option}", 'val', (int) $val);
             }
